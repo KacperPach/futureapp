@@ -1,4 +1,5 @@
 
+const { json } = require('express');
 const express = require('express');
 const path = require('path');
 
@@ -10,9 +11,11 @@ console.log('running on: http://127.0.0.1:' + PORT);
 
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
+
 app.listen(PORT);
 
 app.get('/', (req,res) => {
+
     res.sendFile(path.resolve(__dirname + '/public/index.html'))
 } );
 
@@ -24,7 +27,7 @@ app.post('/movies', async (req,res) => {
             "INSERT INTO movie_list (title, release_date, rating, director, genere) VALUES ($1, $2, $3, $4, $5)",
             [item.title, new Date(item.release_date), item.rating, item.director, item.genere]
         );
-        res.send('success');
+        res.send(newItem);
     }
     catch (err) {
         res.send(err.detail);
@@ -52,7 +55,7 @@ app.delete('/movies/:id', async (req,res) => {
         const Item = await pool.query(
             "DELETE FROM movie_list WHERE id = $1"
         );
-        res.send('success' );
+        res.send(Item);
 
     } catch (err) {
         res.send(err.detail);
@@ -76,7 +79,7 @@ app.get('/movies/:id', async (req,res) => {
             "SELECT * FROM movie_list WHERE id = $1",
             [req.params.id]
         );
-        res.send(Item.rows.length === 0 ? 'wrong id' : Item.rows);
+        res.send(Item.rows.length === 0 ? JSON.stringify('wrong id') : Item.rows);
 
     } catch (err) {
         res.send(err.detail);
