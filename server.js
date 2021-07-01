@@ -1,4 +1,4 @@
-const exp = require('constants');
+
 const express = require('express');
 const path = require('path');
 
@@ -6,7 +6,7 @@ const PORT = 8888;
 const app = express();
 const pool = require("./data/db");
 
-console.log('running on: 127.0.0.1:' + PORT);
+console.log('running on: http://127.0.0.1:' + PORT);
 
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
