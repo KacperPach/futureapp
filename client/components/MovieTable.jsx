@@ -38,7 +38,7 @@ export default function MovieTable (props) {
                 {items.map(item => (
 
                     <tr key={item.id}>
-                        <td>{item.title}</td><td>{item.release_date}</td><td>{item.rating}</td><td>{item.director}</td><td>{item.genere}</td>
+                        <td>{item.title}</td><td>{new Date(item.release_date).toLocaleDateString()}</td><td>{item.rating}</td><td>{item.director}</td><td>{item.genere}</td>
                     </tr>
 
                 ))}
