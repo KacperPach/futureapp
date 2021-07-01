@@ -3,15 +3,17 @@ const { json } = require('express');
 const express = require('express');
 const path = require('path');
 
-const cors = require('cors');
-
 const PORT = 8888;
 const app = express();
 const pool = require("./data/db");
 
+
+const cors = require('cors'); 
+app.use(cors());
+
 console.log('running on: http://127.0.0.1:' + PORT);
 
-app.use(cors({origin: 'http://127.0.0.1:8888'}))
+
 app.use(express.json());
 app.use(express.static(__dirname + '/public'));
 
