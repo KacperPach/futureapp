@@ -1,0 +1,8 @@
+.defaultIMG {
+    background-image: url('../images/film.jpg') ;
+    background-size:cover;
+}
+body{
+    background-color: #d3d3d3;
+    text-align: center;
+}

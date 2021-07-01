@@ -25,7 +25,7 @@ app.post('/movies', async (req,res) => {
         const item = req.body;
         const newItem = await pool.query(
             "INSERT INTO movie_list (title, release_date, rating, director, genere) VALUES ($1, $2, $3, $4, $5)",
-            [item.title, new Date(item.release_date), item.rating, item.director, item.genere]
+            [item.title, JSON.stringify(new Date(item.release_date)), item.rating, item.director, item.genere]
         );
         res.send(newItem);
     }
@@ -40,9 +40,8 @@ app.put('/movies/:id', async (req,res) => {
         const item = req.body;
         const Item = await pool.query(
             "UPDATE movie_list SET title = $2, release_date = $3, rating = $4, director = $5, genere = $6 WHERE id = $1 ",
-            [req.params.id,item.title, new Date(item.release_date), item.rating, item.director, item.genere]
+            [req.params.id,item.title, JSON.stringify(new Date(item.release_date)), item.rating, item.director, item.genere]
         );
-        console.log(req.params.id);
         res.send( Item.rows);
 
     } catch (err) {

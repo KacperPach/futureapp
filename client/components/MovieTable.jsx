@@ -1,6 +1,8 @@
 import React from 'react';
 import { useState, useEffect } from 'react';
-import {AiTwotoneDelete} from 'react-icons/Ai'
+import {AiTwotoneDelete} from 'react-icons/Ai';
+import './styles/style.css';
+import {Button, Table, TableBody, TableCell, TableHead, TableRow, Paper, TableContainer} from '@material-ui/core';
 
 
 export default function MovieTable (props) {
@@ -44,26 +46,35 @@ export default function MovieTable (props) {
         return <div>Loading...</div>;
       } else {
         return (
-        <table>
-            <tbody>
-                <tr>
-                        <td>title</td><td>release date</td><td>rating</td><td>director</td><td>genere</td><td>select</td>
-                </tr>
+        <TableContainer component={Paper}>
 
+        <Table>
+            
+                <TableHead>
+                  <TableRow>
+                    <TableCell>Tytuł</TableCell><TableCell>Data wydania</TableCell><TableCell>Ocena</TableCell><TableCell>Reżyser</TableCell><TableCell>Gatunek</TableCell><TableCell>Usuń</TableCell><TableCell>Edytuj</TableCell><TableCell>zdjęcie</TableCell>
+                  </TableRow>
+                </TableHead>
+                <TableBody>
                 {items.map(item => (
 
-                    <tr key={item.id}>
-                        <td>{item.title}</td>
-                        <td>{new Date(item.release_date).toLocaleDateString()}</td>
-                        <td>{item.rating}</td>
-                        <td>{item.director}</td>
-                        <td>{item.genere}</td>
-                        <td><button onClick={() => deleteItem(item.id)}><AiTwotoneDelete /></button></td>
-                    </tr>
+                    <TableRow key={item.id}>
+                        <TableCell>{item.title}</TableCell>
+                        <TableCell>{new Date(item.release_date).toLocaleDateString()}</TableCell>
+                        <TableCell>{item.rating}</TableCell>
+                        <TableCell>{item.director}</TableCell>
+                        <TableCell>{item.genere}</TableCell>
+                        <TableCell><Button onClick={() => deleteItem(item.id)}><AiTwotoneDelete /></Button></TableCell>
+                        <TableCell><Button onClick={() => props.setView(item.id)}>Edytuj</Button></TableCell>
+                        <TableCell className='defaultIMG'></TableCell>
+                    </TableRow>
 
                 ))}
-            </tbody>
-        </table>
+                </TableBody>
+            
+        </Table>
+
+        </TableContainer>
         );
       }
 }

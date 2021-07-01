@@ -1,5 +1,6 @@
 import React from "react";
 import {useForm} from "react-hook-form";
+import {Button} from '@material-ui/core';
 
 export default function AddMovie (props) 
 {
@@ -25,11 +26,11 @@ export default function AddMovie (props)
     return (
         <div>
             <form onSubmit={handleSubmit(onSubmit)}>
-                <input type="text" placeholder="Nazwa filmu" {...register('title',{required: true})} />
-                <input type="date"  {...register('release_date',{required: true})} />
-                <input type="number" placeholder="ocena" max={5} min={1} {...register('rating',{required: true})} />
-                <input type="text" placeholder="Imie i nazwiso reżysera" {...register('director',{required: true, pattern: {value: /^[A-Za-z]/i}})} />
-                <input type="text" placeholder="Gatunek" {...register('genere',{required: true})} />
+                <input type="text" placeholder="Nazwa filmu" {...register('title',{required: true})} /> <br/>
+                <input type="date"  {...register('release_date',{required: true})} /><br/>
+                <input type="number" placeholder="ocena" max={5} min={1} {...register('rating',{required: true})} /><br/>
+                <input type="text" placeholder="Imie i nazwiso reżysera" {...register('director',{required: true, pattern: {value: /^[A-Za-z]/i}})} /><br/>
+                <input type="text" placeholder="Gatunek" {...register('genere',{required: true})} /><br/>
                 <input type="submit"/>
 
             </form>
