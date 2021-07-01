@@ -8,13 +8,18 @@ export default function AddMovie (props)
     const address = props.address;
 
     const onSubmit = (data) => {
-        console.log(data);
+
         const req = {
             method: 'post',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
         };
-        fetch(address, req).then(res => res.json()).then(data => console.log(data));
+        fetch(address, req)
+            .then(res => res.json())
+            .then(data => {
+                console.log(data); window.location.reload();
+            });
+        
     }
 
     return (

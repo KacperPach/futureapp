@@ -53,7 +53,8 @@ app.put('/movies/:id', async (req,res) => {
 app.delete('/movies/:id', async (req,res) => {
     try {
         const Item = await pool.query(
-            "DELETE FROM movie_list WHERE id = $1"
+            "DELETE FROM movie_list WHERE id = $1",
+            [req.params.id]
         );
         res.send(Item);
 
