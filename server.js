@@ -2,14 +2,26 @@
 const { json } = require('express');
 const express = require('express');
 const path = require('path');
+const multer = require('multer');
 
 const PORT = 8888;
 const app = express();
 const pool = require("./data/db");
 
+const imageStorage = multer.diskStorage({
+    destination: (req, file, cb) => {
+        cb(null, "./client/components/images");
+    },
+    filename: (req, file, cb) => {
+        cb(null, req.params.id + '.jpg');
+    }
+});
+
+const upload = multer({storage: imageStorage});
+
 
 const cors = require('cors'); 
-app.use(cors());
+app.use(cors()); // not very secure 
 
 console.log('running on: http://127.0.0.1:' + PORT);
 
@@ -89,4 +101,11 @@ app.get('/movies/:id', async (req,res) => {
     } catch (err) {
         res.send(err.detail);
     }
+});
+app.post('/image/:id', upload.single("image"), (req, res) => {
+    console.log(req);
+    res.send('uploaded!');
+});
+app.get('/image/:id', (req, res) => {
+    res.sendFile(path.resolve( __dirname + '/client/components/images/' + req.params.id + '.jpg'));
 });

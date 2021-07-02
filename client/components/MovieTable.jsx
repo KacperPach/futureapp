@@ -66,7 +66,7 @@ export default function MovieTable (props) {
                         <TableCell>{item.genere}</TableCell>
                         <TableCell><Button onClick={() => deleteItem(item.id)}><AiTwotoneDelete /></Button></TableCell>
                         <TableCell><Button onClick={() => props.setView(item.id)}>Edytuj</Button></TableCell>
-                        <TableCell className='defaultIMG'></TableCell>
+                        <TableCell className='defaultIMG' style={{ backgroundImage: `url(./image/${item.id})` }}></TableCell>
                     </TableRow>
 
                 ))}
