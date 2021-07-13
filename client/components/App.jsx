@@ -12,6 +12,19 @@ const ApiAddressMovies = "http://localhost:8888/movies"; //this address needs to
 const ApiAddressImages = "http://localhost:8888/image";
 
 
+/* 
+    THINGS TO FIX
+
+    1. Better materialUi integration.
+    2. Add Redux/ React router
+    
+
+
+
+
+*/
+
+
 
 export default function App () {
     const [view,setView] = useState(-1);

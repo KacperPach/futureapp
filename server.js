@@ -8,6 +8,18 @@ const PORT = 8888;
 const app = express();
 const pool = require("./data/db");
 
+/* 
+    THINGS TO FIX
+    1. when the record of movie is deleted remove corresponding photo too
+    2. make upload sequence more foolproof, currently you can upload everything
+    3. add support for more img formats than jpg
+    4. learn about sequelize
+    5. hide passwords in .env file 
+
+
+*/
+
+
 const imageStorage = multer.diskStorage({
     destination: (req, file, cb) => {
         cb(null, "./client/components/images");
